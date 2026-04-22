@@ -22,6 +22,7 @@ function createWindow() {
     alwaysOnTop: true,
     center: true,
     skipTaskbar: false,
+    icon: join(process.env.PUBLIC!, 'icon.png'),
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -31,14 +32,15 @@ function createWindow() {
 
   // Removed default ignore mouse events to start in "interactive" mode
   // win.setIgnoreMouseEvents(true, { forward: true })
+  // win.webContents.openDevTools()
 
   if (VITE_DEV_SERVER_URL) {
     console.log('Loading URL:', VITE_DEV_SERVER_URL)
     win.loadURL(VITE_DEV_SERVER_URL)
     win.webContents.openDevTools({ mode: 'detach' })
   } else {
-    console.log('Loading file:', join(process.env.DIST, 'index.html'))
-    win.loadFile(join(process.env.DIST, 'index.html'))
+    console.log('Loading file:', join(process.env.DIST!, 'index.html'))
+    win.loadFile(join(process.env.DIST!, 'index.html'))
   }
 
   ipcMain.on('set-ignore-mouse-events', (event, ignore, options) => {

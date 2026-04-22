@@ -1,9 +1,1 @@
-"use strict";
-const electron = require("electron");
-console.log("Preload script executing...");
-electron.contextBridge.exposeInMainWorld("electronAPI", {
-  onMediaUpdate: (callback) => electron.ipcRenderer.on("media-update", (_event, value) => callback(value)),
-  onMediaPosition: (callback) => electron.ipcRenderer.on("media-position", (_event, value) => callback(value)),
-  setIgnoreMouseEvents: (ignore, options) => electron.ipcRenderer.send("set-ignore-mouse-events", ignore, options),
-  setAlwaysOnTop: (flag) => electron.ipcRenderer.send("set-always-on-top", flag)
-});
+"use strict";const n=require("electron");console.log("Preload script executing...");n.contextBridge.exposeInMainWorld("electronAPI",{onMediaUpdate:e=>n.ipcRenderer.on("media-update",(o,t)=>e(t)),onMediaPosition:e=>n.ipcRenderer.on("media-position",(o,t)=>e(t)),setIgnoreMouseEvents:(e,o)=>n.ipcRenderer.send("set-ignore-mouse-events",e,o),setAlwaysOnTop:e=>n.ipcRenderer.send("set-always-on-top",e)});
